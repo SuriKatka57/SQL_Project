@@ -45,5 +45,4 @@ WHERE
   average_change > 0 
 ORDER BY 
   average_change
-LIMIT 
-  1
+LIMIT 1
