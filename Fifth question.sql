@@ -2,19 +2,19 @@
 WITH comparison AS (
   WITH percentual_changes AS (
     SELECT 
-      DISTINCT e.`year` AS year_of_measurement, 
-      e.GDP, 
-      round((GDP - lag(GDP) OVER (ORDER BY e.`year`)) 
-      		/ lag(GDP) OVER (ORDER BY e.`year`) * 100, 2) 
+      DISTINCT tkc2.`year` AS year_of_measurement, 
+      tkc2.GDP, 
+      round((GDP - lag(GDP) OVER (ORDER BY tkc2.`year`)) 
+      		/ lag(GDP) OVER (ORDER BY tkc2.`year`) * 100, 2) 
       		AS percentual_GDP_change 
     FROM 
-      economies e 
+      t_katarina_civanova_project_SQL_secondary_final tkc2 
     WHERE 
       country LIKE 'czech%' 
       AND `year` > 2005 
       AND `year` < 2019 
     order by 
-      e.`year`
+      tkc2.`year`
   ) 
   SELECT 
     DISTINCT year_of_measurement, 
